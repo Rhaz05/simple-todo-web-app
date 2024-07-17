@@ -1,0 +1,24 @@
+{
+  "name": "simple-todo-web-app",
+  "version": "1.0.0",
+  "description": "Practice for HTMX",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "Rhaz",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "uuid": "^10.0.0",
+    "winston": "^3.13.1"
+  }
+}
