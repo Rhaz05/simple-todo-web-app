@@ -1,3 +1,19 @@
 body {
     font-family: "Share Tech", sans-serif;
 }
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(45 212 191);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(192, 192, 192);
+}
