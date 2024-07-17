@@ -3,7 +3,7 @@ import "dotenv/config";
 import morgan from "morgan";
 import { v4 as uuidv4 } from "uuid";
 import { logger } from "./util/logger.util.js";
-import { todoList } from "./components/todoList.js";
+import { todoList, updateTask } from "./components/todoList.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,6 +15,7 @@ const taskList = [
 
 const initServer = () => {
   logger.info("Starting Server...");
+
   logger.info("Adding Middlewares...");
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static("public"));
@@ -55,6 +56,30 @@ const initServer = () => {
     if (taskIndex !== -1) {
       taskList[taskIndex].done = !taskList[taskIndex].done;
       res.status(200).send(taskList[taskIndex]);
+    } else {
+      res.status(404).send({ message: "Task not found" });
+    }
+  });
+
+  app.get("/task/:id", (req, res) => {
+    const { id } = req.params;
+    const taskIndex = taskList.findIndex((task) => task.id === id);
+    if (taskIndex !== -1) {
+      res.send(updateTask(taskList[taskIndex]));
+    } else {
+      res.status(404).send({ message: "Task not found" });
+    }
+  });
+
+  app.put("/task/edit/:id", (req, res) => {
+    const { id } = req.params;
+    const taskIndex = taskList.findIndex((task) => task.id === id);
+    if (taskIndex !== -1) {
+      const { task } = req.body;
+      if (!task) return res.status(400).send("Task is required");
+      taskList[taskIndex].name = task;
+      const updatedTask = todoList([taskList[taskIndex]]);
+      res.status(200).send(updatedTask);
     } else {
       res.status(404).send({ message: "Task not found" });
     }
