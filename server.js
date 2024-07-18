@@ -51,11 +51,14 @@ const initServer = () => {
 
   app.put("/task/:id", (req, res) => {
     const { id } = req.params;
+    if (!id) return res.status(400).send("Task ID is required");
+
     const taskIndex = taskList.findIndex((task) => task.id === id);
 
     if (taskIndex !== -1) {
       taskList[taskIndex].done = !taskList[taskIndex].done;
-      res.status(200).send(taskList[taskIndex]);
+      const updatedTask = todoList([taskList[taskIndex]]);
+      res.status(200).send(updatedTask);
     } else {
       res.status(404).send({ message: "Task not found" });
     }

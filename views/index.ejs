@@ -10,29 +10,34 @@
     <header>
         <h1 class="flex justify-center text-5xl mt-5 p-2">Todo List</h1>
     </header>
+    <!-- End of Header -->
 
     <!-- Main Content -->
     <main class="container mx-auto">
-        <section class="flex justify-center text-center">
-            <div
-                class="border w-[80%] xl:w-[33%] h-[400px] bg-slate-50 rounded-md p-10 text-xl max-h-[400px] overflow-y-auto overflow-x-hidden">
-                <ul id="todoList" hx-get="/task" hx-trigger="load" hx-swap="innerHTML"></ul>
-            </div>
-        </section>
-        <section class="text-center">
-            <h4 class="text-2xl p-4">Add a New Task</h4>
-            <form class="flex justify-center gap-4" id="taskForm"
-                hx-on::after-request="document.querySelector('#taskForm').reset()" hx-post="/task" hx-target="#todoList"
-                hx-swap="beforeend">
-                <input type="text" name="task" id="taskName" placeholder="Enter Task Name"
-                    class="px-3 border-2 rounded-md" autocomplete="off" required>
-                <button type="submit" id="addTask"
-                    class="w-24 p-2 border-2 rounded-md border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-white">
-                    ADD
-                </button>
-            </form>
-        </section>
+        <div class="test" id="mainContent">
+            <section class="flex justify-center text-center">
+                <div
+                    class="border w-[80%] xl:w-[33%] h-[400px] bg-slate-50 rounded-md p-10 text-xl max-h-[400px] overflow-y-auto overflow-x-hidden">
+                    <ul id="todoList" hx-get="/task" hx-trigger="load" hx-swap="innerHTML"></ul>
+                </div>
+            </section>
+            <section class="text-center">
+                <h4 class="text-2xl p-4">Add a New Task</h4>
+                <form class="flex justify-center gap-4" id="taskForm"
+                    hx-on::after-request="document.querySelector('#taskForm').reset()" hx-post="/task" hx-target="#todoList"
+                    hx-swap="beforeend">
+                    <input type="text" name="task" id="taskName" placeholder="Enter Task Name"
+                        class="px-3 border-2 rounded-md" autocomplete="off" required>
+                    <button type="submit" id="addTask"
+                        class="w-24 p-2 border-2 rounded-md border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-white">
+                        ADD
+                    </button>
+                </form>
+            </section>
+        </div>
     </main>
+    <!-- End of Main Content -->
+
 </body>
 <%- include('./sections/scripts.ejs') %>
 </html>
